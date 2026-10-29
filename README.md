@@ -71,13 +71,15 @@ birthday-website/
 
 ### Birthday access code
 
-Create `.env.local` from `.env.example` and set your own code:
+The default birthday access code is `30102005`. To use a different code locally,
+create `.env.local` from `.env.example` and set `VITE_BIRTHDAY_PASSWORD`:
 
 ```bash
 cp .env.example .env.local
 ```
 
-`.env.local` is ignored by Git. The lock-screen code is included in client-side
+`.env.local` is ignored by Git. If `VITE_BIRTHDAY_PASSWORD` is not set, the app
+uses the default code above. The lock-screen code is included in client-side
 JavaScript, so it is not suitable for protecting confidential content.
 
 ### Prerequisites

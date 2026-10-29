@@ -4,7 +4,7 @@ function LockScreen({ onUnlock }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
 
-  const correctPassword = import.meta.env.VITE_BIRTHDAY_PASSWORD;
+  const correctPassword = import.meta.env.VITE_BIRTHDAY_PASSWORD || "30102005";
 
   const handleSubmit = (e) => {
     e.preventDefault();
