@@ -27,7 +27,7 @@ function BirthdayCard({ onContinue }) {
           {/* Vipin's childhood photo */}
           <div className="birthday-photo-frame">
             <img
-              src="public/photos/img4.jpg"
+              src={`${import.meta.env.BASE_URL}photos/img4.jpg`}
               alt="My Ammu as a little boy"
               className="birthday-childhood-photo"
             />
