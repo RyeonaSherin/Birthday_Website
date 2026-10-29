@@ -69,6 +69,17 @@ birthday-website/
 
 ## 🚀 Getting Started
 
+### Birthday access code
+
+Create `.env.local` from `.env.example` and set your own code:
+
+```bash
+cp .env.example .env.local
+```
+
+`.env.local` is ignored by Git. The lock-screen code is included in client-side
+JavaScript, so it is not suitable for protecting confidential content.
+
 ### Prerequisites
 
 - Node.js

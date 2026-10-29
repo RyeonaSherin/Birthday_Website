@@ -1,0 +1,999 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  background: #05010d;
+  font-family: "Inter", sans-serif;
+}
+
+.app {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: #05010d;
+}
+
+/* =========================
+   GALAXY
+========================= */
+
+.galaxy {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 45%,
+      rgba(124, 58, 237, 0.18),
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 15% 20%,
+      rgba(168, 85, 247, 0.2),
+      transparent 35%
+    ),
+    radial-gradient(
+      ellipse at 85% 80%,
+      rgba(88, 28, 135, 0.2),
+      transparent 40%
+    ),
+    linear-gradient(
+      135deg,
+      #05010d 0%,
+      #0c0319 45%,
+      #080116 100%
+    );
+}
+
+/* Nebula glow */
+
+.galaxy::before {
+  content: "";
+  position: absolute;
+  width: 700px;
+  height: 700px;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(168, 85, 247, 0.22) 0%,
+      rgba(124, 58, 237, 0.12) 25%,
+      transparent 70%
+    );
+
+  filter: blur(40px);
+
+  animation: nebulaPulse 8s ease-in-out infinite;
+}
+
+@keyframes nebulaPulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 1;
+  }
+}
+
+/* =========================
+   STARS
+========================= */
+
+.stars,
+.stars2,
+.stars3 {
+  position: absolute;
+  inset: -100px;
+
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.95) 1px, transparent 1px),
+    radial-gradient(circle, rgba(216, 180, 254, 0.8) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.7) 1px, transparent 1px);
+
+  background-size:
+    80px 80px,
+    130px 130px,
+    190px 190px;
+
+  background-position:
+    0 0,
+    30px 60px,
+    80px 20px;
+
+  animation: starMove 45s linear infinite;
+
+  opacity: 0.65;
+}
+/* =========================
+   CENTER GLOW
+========================= */
+
+.galaxy::after {
+  content: "";
+
+  position: absolute;
+
+  width: 500px;
+  height: 180px;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  background: rgba(139, 92, 246, 0.16);
+
+  filter: blur(80px);
+
+  border-radius: 50%;
+}
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome {
+  position: relative;
+
+  z-index: 5;
+
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  color: white;
+
+  padding: 20px;
+}
+
+.welcome h1 {
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+
+  font-weight: 500;
+
+  letter-spacing: -1px;
+
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #e9d5ff,
+    #c084fc,
+    #ffffff
+  );
+
+  background-size: 200% auto;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  animation: textGlow 5s linear infinite;
+
+  filter: drop-shadow(
+    0 0 25px rgba(168, 85, 247, 0.35)
+  );
+}
+
+@keyframes textGlow {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.welcome p {
+  margin-top: 18px;
+
+  font-size: 1rem;
+
+  color: rgba(255, 255, 255, 0.65);
+
+  letter-spacing: 2px;
+
+  font-weight: 400;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .welcome h1 {
+    font-size: 2.5rem;
+  }
+
+  .welcome p {
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+  }
+}
+/* =========================
+   SHOOTING STARS
+========================= */
+
+.shooting-star {
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  box-shadow:
+    0 0 6px #ffffff,
+    0 0 14px #c084fc,
+    0 0 25px #a855f7;
+
+  opacity: 0;
+
+  transform: rotate(-45deg);
+
+  z-index: 2;
+}
+
+/* The glowing tail */
+
+.shooting-star::after {
+  content: "";
+
+  position: absolute;
+
+  width: 140px;
+  height: 2px;
+
+  top: 1px;
+  right: 2px;
+
+  background: linear-gradient(
+    90deg,
+    rgba(216, 180, 254, 0.9),
+    rgba(168, 85, 247, 0.45),
+    transparent
+  );
+
+  filter: blur(1px);
+
+  transform-origin: right center;
+}
+
+/* Star 1 */
+
+.shooting-star-1 {
+  top: 12%;
+  left: 15%;
+
+  animation: shootingStar 6s linear infinite;
+  animation-delay: 1s;
+}
+
+/* Star 2 */
+
+.shooting-star-2 {
+  top: 25%;
+  left: 75%;
+
+  animation: shootingStar 7s linear infinite;
+  animation-delay: 3s;
+}
+
+/* Star 3 */
+
+.shooting-star-3 {
+  top: 45%;
+  left: 5%;
+
+  animation: shootingStar 8s linear infinite;
+  animation-delay: 5s;
+}
+
+/* Star 4 */
+
+.shooting-star-4 {
+  top: 8%;
+  left: 55%;
+
+  animation: shootingStar 6.5s linear infinite;
+  animation-delay: 7s;
+}
+
+/* Star 5 */
+
+.shooting-star-5 {
+  top: 65%;
+  left: 80%;
+
+  animation: shootingStar 7.5s linear infinite;
+  animation-delay: 9s;
+}
+
+/* Star 6 */
+
+.shooting-star-6 {
+  top: 75%;
+  left: 35%;
+
+  animation: shootingStar 9s linear infinite;
+  animation-delay: 11s;
+}
+
+
+/* =========================
+   SHOOTING ANIMATION
+========================= */
+
+@keyframes shootingStar {
+
+  0% {
+    transform:
+      translate(0, 0)
+      rotate(-45deg)
+      scale(0);
+
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+    transform:
+      translate(0, 0)
+      rotate(-45deg)
+      scale(1);
+  }
+
+  35% {
+    opacity: 1;
+  }
+
+  70% {
+    transform:
+      translate(350px, 350px)
+      rotate(-45deg)
+      scale(1);
+
+    opacity: 0;
+  }
+
+  100% {
+    transform:
+      translate(500px, 500px)
+      rotate(-45deg)
+      scale(1);
+
+    opacity: 0;
+  }
+}
+/* =================================
+   PREMIUM LOCK SCREEN
+================================= */
+
+.lock-screen {
+  position: relative;
+  z-index: 10;
+
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+}
+
+/* Glass card */
+
+.lock-card {
+  position: relative;
+
+  width: min(440px, 92vw);
+
+  padding: 48px 42px 32px;
+
+  text-align: center;
+
+  border: 1px solid rgba(216, 180, 254, 0.16);
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.075),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.55),
+    0 0 80px rgba(124, 58, 237, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  animation: cardAppear 1.2s cubic-bezier(.22,1,.36,1);
+}
+
+@keyframes cardAppear {
+
+  from {
+    opacity: 0;
+    transform: translateY(35px) scale(.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+}
+
+/* subtle glass highlight */
+
+.lock-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 12%;
+
+  width: 76%;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(216, 180, 254, 0.7),
+    transparent
+  );
+}
+
+/* =================================
+   HEART ICON
+================================= */
+
+.lock-icon {
+  width: 68px;
+  height: 68px;
+
+  margin: 0 auto 25px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(168, 85, 247, 0.25),
+      rgba(88, 28, 135, 0.08)
+    );
+
+  border: 1px solid rgba(216, 180, 254, 0.2);
+
+  box-shadow:
+    0 0 30px rgba(168, 85, 247, 0.2),
+    inset 0 0 20px rgba(168, 85, 247, 0.08);
+
+  animation: iconFloat 4s ease-in-out infinite;
+}
+
+.lock-icon span {
+  font-size: 27px;
+  color: #e9d5ff;
+
+  text-shadow:
+    0 0 15px rgba(216, 180, 254, 0.8);
+}
+
+@keyframes iconFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+
+}
+
+/* =================================
+   TEXT
+================================= */
+
+.lock-label {
+  font-size: 10px;
+
+  letter-spacing: 4px;
+
+  color: rgba(216, 180, 254, 0.7);
+
+  margin-bottom: 17px;
+}
+
+.lock-card h1 {
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(2.5rem, 7vw, 3.5rem);
+
+  line-height: 1.05;
+
+  font-weight: 500;
+
+  color: white;
+
+  letter-spacing: -1px;
+
+  text-shadow:
+    0 0 35px rgba(168, 85, 247, 0.18);
+}
+
+.lock-description {
+  margin: 18px auto 30px;
+
+  max-width: 280px;
+
+  font-size: 13px;
+
+  line-height: 1.7;
+
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* =================================
+   PASSWORD
+================================= */
+
+.password-box {
+  display: flex;
+  align-items: center;
+
+  height: 58px;
+
+  padding: 0 17px;
+
+  border-radius: 15px;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  background: rgba(0, 0, 0, 0.22);
+
+  transition: .3s ease;
+}
+
+.password-box:focus-within {
+  border-color: rgba(192, 132, 252, 0.55);
+
+  box-shadow:
+    0 0 0 4px rgba(168, 85, 247, 0.07),
+    0 0 25px rgba(168, 85, 247, 0.1);
+}
+
+.password-box.error {
+  border-color: rgba(248, 113, 113, 0.6);
+
+  animation: shake .35s ease;
+}
+
+.key-icon {
+  color: #c084fc;
+
+  margin-right: 12px;
+
+  font-size: 15px;
+}
+
+.password-box input {
+  width: 100%;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: white;
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 14px;
+}
+
+.password-box input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* =================================
+   ERROR
+================================= */
+
+.error-message {
+  margin-top: 10px;
+
+  font-size: 11px;
+
+  color: #d8b4fe;
+
+  animation: errorAppear .3s ease;
+}
+
+@keyframes errorAppear {
+
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+@keyframes shake {
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  50% {
+    transform: translateX(5px);
+  }
+
+  75% {
+    transform: translateX(-3px);
+  }
+
+}
+
+/* =================================
+   UNLOCK BUTTON
+================================= */
+
+.unlock-button {
+  width: 100%;
+
+  height: 58px;
+
+  margin-top: 15px;
+
+  border: none;
+
+  border-radius: 15px;
+
+  cursor: pointer;
+
+  color: white;
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 13px;
+
+  font-weight: 500;
+
+  letter-spacing: .3px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c3aed,
+      #9333ea,
+      #6d28d9
+    );
+
+  box-shadow:
+    0 12px 30px rgba(124, 58, 237, 0.25);
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+.unlock-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 16px 40px rgba(124, 58, 237, 0.4);
+}
+
+.unlock-button:active {
+  transform: scale(.98);
+}
+
+.arrow {
+  font-size: 19px;
+
+  transition: transform .3s ease;
+}
+
+.unlock-button:hover .arrow {
+  transform: translateX(5px);
+}
+
+/* =================================
+   FOOTER
+================================= */
+
+.lock-footer {
+  margin-top: 30px;
+
+  font-size: 9px;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  color: rgba(255, 255, 255, 0.25);
+}
+
+/* =================================
+   ORBITS
+================================= */
+
+.lock-orbit {
+  position: absolute;
+
+  border: 1px solid rgba(168, 85, 247, 0.07);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+.orbit-one {
+  width: 600px;
+  height: 600px;
+
+  animation: orbitRotate 30s linear infinite;
+}
+
+.orbit-two {
+  width: 850px;
+  height: 850px;
+
+  animation: orbitRotate 50s linear infinite reverse;
+}
+
+@keyframes orbitRotate {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+  .lock-card {
+    padding: 38px 24px 28px;
+
+    border-radius: 24px;
+  }
+
+  .lock-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .lock-label {
+    letter-spacing: 3px;
+  }
+
+  .orbit-one {
+    width: 450px;
+    height: 450px;
+  }
+
+  .orbit-two {
+    width: 650px;
+    height: 650px;
+  }
+
+}
+/* =================================
+   CINEMATIC UNLOCK
+================================= */
+
+.transition-screen {
+  position: fixed;
+  inset: 0;
+
+  z-index: 50;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(139, 92, 246, 0.22),
+      transparent 35%
+    ),
+    rgba(3, 0, 10, 0.92);
+
+  animation: transitionFade 1.2s ease forwards;
+}
+
+.transition-orb {
+  position: absolute;
+
+  width: 20px;
+  height: 20px;
+
+  border-radius: 50%;
+
+  background: #e9d5ff;
+
+  box-shadow:
+    0 0 20px #c084fc,
+    0 0 60px #a855f7,
+    0 0 120px rgba(168, 85, 247, 0.8);
+
+  animation: orbExpand 1.2s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+.transition-text {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 10px;
+
+  color: white;
+
+  opacity: 0;
+
+  animation: textReveal .7s ease .35s forwards;
+}
+
+.transition-text span {
+  font-size: 10px;
+
+  letter-spacing: 5px;
+
+  color: rgba(216, 180, 254, 0.65);
+}
+
+.transition-text strong {
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(2.5rem, 8vw, 5rem);
+
+  font-weight: 500;
+
+  letter-spacing: -1px;
+
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #d8b4fe,
+    #ffffff
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes orbExpand {
+
+  0% {
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+  }
+
+  45% {
+    width: 250px;
+    height: 250px;
+  }
+
+  100% {
+    width: 2500px;
+    height: 2500px;
+    opacity: 0;
+  }
+
+}
+
+@keyframes textReveal {
+
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+@keyframes transitionFade {
+
+  0% {
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+
+}.start-screen {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 100 !important;
+
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.start-card {
+  position: relative !important;
+  z-index: 101 !important;
+}
